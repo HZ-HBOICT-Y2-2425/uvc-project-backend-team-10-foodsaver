@@ -15,7 +15,7 @@ export async function addFavorite(req, res) {
         res.status(201).json({ message: "Favorite added successfully" });
     } catch (error) {
         console.error(error);
-            res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error" });
     }
 }
 
@@ -27,6 +27,18 @@ export async function getFavorites(req, res) {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+// get all the favorite recipes's IDs
+export async function getFavoriteRecipeIds(req, res) {
+    try {
+        const favoriteRecipes = await db('favorites').select('recipe_id');
+        const recipeIds = favoriteRecipes.map((item) => item.recipe_id);
+        res.status(200).json(recipeIds);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to retrieve favorite recipe IDs" });
     }
 }
 
