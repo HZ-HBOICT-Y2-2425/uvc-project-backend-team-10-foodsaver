@@ -22,7 +22,7 @@ export async function addFavorite(req, res) {
 // get all favorite recipes from database
 export async function getFavorites(req, res) {
     try {
-        const favorites = await db('favorites').select('*'); // 使用 db 实例
+        const favorites = await db('favorites').select('*');
         res.status(200).json(favorites);
     } catch (error) {
         console.error(error);
@@ -60,4 +60,21 @@ export async function checkFavorite(req, res) {
       res.status(500).json({ error: "Failed to check favorite status" });
     }
   }
+
+  // remove a favorite recipe from the database
+export async function removeFavorite(req, res) {
+    const { recipe_id } = req.params;
+
+    if (!recipe_id) {
+        return res.status(400).json({ error: "Recipe ID is required" });
+    }
+
+    try {
+        await db('favorites').where('recipe_id', recipe_id).del();
+        res.status(200).json({ message: "Favorite removed successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+}
 
