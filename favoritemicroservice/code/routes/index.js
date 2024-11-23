@@ -1,5 +1,5 @@
 import express from 'express';
-import { getFavorites, addFavorite, getFavoriteRecipeIds } from '../controllers/favoritesController.js';
+import { getFavorites, addFavorite, getFavoriteRecipeIds,checkFavorite } from '../controllers/favoritesController.js';
 
 const router = express.Router();
 
@@ -7,5 +7,6 @@ const router = express.Router();
 router.post('/favorites', addFavorite);
 router.get('/favorites', getFavorites);
 router.get('/favorite-recipe-ids', getFavoriteRecipeIds);
+router.get('/check-favorite/:recipe_id', checkFavorite);
 
 export default router;
