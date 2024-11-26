@@ -44,6 +44,7 @@ const loginUser = async (req, res) => {
         success: true,
         message: 'Login successful!',
         token,
+        username: user.username  // Añadimos el nombre de usuario a la respuesta
       });
     } else {
       res.status(401).json({ success: false, message: 'Invalid username or password' });
