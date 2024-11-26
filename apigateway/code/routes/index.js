@@ -13,6 +13,13 @@ const favoritemicroserviceProxy = createProxyMiddleware({
   changeOrigin: true
 });
 
+const loginregistermicroserviceProxy = createProxyMiddleware({
+  target: 'http://loginregistermicroservice:4000/',
+  changeOrigin: true
+});
+
+router.use('/loginregistermicroservice', loginregistermicroserviceProxy);
+
 router.use('/microservice', microserviceProxy);
 router.use('/favoritemicroservice', favoritemicroserviceProxy);
 
