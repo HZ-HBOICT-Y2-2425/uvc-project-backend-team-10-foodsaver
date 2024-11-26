@@ -1,7 +1,2 @@
-FROM node:16
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . .
-EXPOSE 4000
-CMD ["npm", "start"]
+FROM node:22.11.0
+RUN mkdir -p /usr/src/app

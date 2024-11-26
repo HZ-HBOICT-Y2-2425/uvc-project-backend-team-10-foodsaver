@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   microservice:
     container_name: microservice
@@ -20,6 +22,18 @@ services:
       - msexample
     ports:
       - "3012:3012"
+    working_dir: /usr/src/app
+    command: bash -c "npm install && npm run dev"
+
+  login-register-microservice:
+    container_name: login-register-microservice
+    build: ./login-register-microservice
+    volumes:
+      - ./login-register-microservice/code:/usr/src/app
+    networks:
+      - msexample
+    ports:
+      - "4000:4000"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
