@@ -1,5 +1,11 @@
-const knex = require('knex')(require('../knexfile').development);
-const bcrypt = require('bcrypt');
+// const knex = require('knex')(require('../knexfile').development);
+// const bcrypt = require('bcrypt');
+
+import knex from 'knex';
+import knexfile from '../knexfile.js';
+
+const db = knex(knexfile.development);
+
 
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -66,5 +72,24 @@ const authenticateToken = (req, res, next) => {
     res.status(403).json({ success: false, message: 'Invalid token.' });
   }
 };
+
+// controlador (controller.js)
+
+// Función para obtener el nombre del usuario
+export async function getUser(req, res) {
+  const userId = req.user.id; // Suponiendo que tienes el ID del usuario en el token (auth middleware)
+  try {
+      const user = await db('users').select('name').where('id', userId).first();
+      if (user) {
+          res.status(200).json({ name: user.name });
+      } else {
+          res.status(404).json({ error: "User not found" });
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 
 module.exports = { registerUser, loginUser, authenticateToken };
