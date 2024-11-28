@@ -67,4 +67,37 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-module.exports = { registerUser, loginUser, authenticateToken };
+// Obtener información del usuario autenticado
+// const getAuthenticatedUser = async (req, res) => {
+//   try {
+//       // Obtener el ID del usuario autenticado desde `req.user`
+//       const user = await knex('users')
+//           .select('id', 'username', 'email') // Seleccionar solo los campos necesarios
+//           .where({ id: req.user.id })
+//           .first();
+
+//       if (!user) {
+//           return res.status(404).json({ error: "User not found" });
+//       }
+
+//       // Enviar los datos del usuario como respuesta
+//       res.status(200).json(user);
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+
+// get all the favorite recipes's IDs
+export async function getAuthenticatedUser(req, res) {
+  try {
+      const username = await db('users').select('username');
+      res.status(200).json(username);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Failed to retrieve favorite recipe IDs" });
+  }
+}
+
+
+module.exports = { registerUser, loginUser, authenticateToken, getAuthenticatedUser };
