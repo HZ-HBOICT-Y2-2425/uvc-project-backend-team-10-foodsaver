@@ -1,7 +1,8 @@
-const knex = require('knex')(require('../knexfile').development);
-const bcrypt = require('bcrypt');
+//const knex = require('knex')(require('../knexfile').development);
+//const bcrypt = require('bcrypt');
+import { authenticateToken } from "../middleware/middleware.js";
 
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -21,9 +22,9 @@ const registerUser = async (req, res) => {
   }
 };
 
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -54,18 +55,18 @@ const loginUser = async (req, res) => {
 };
 
 
-const authenticateToken = (req, res, next) => {
-  const token = req.headers['authorization'];
-  if (!token) return res.status(401).json({ success: false, message: 'Access denied. No token provided.' });
+// export const authenticateToken = (req, res, next) => {
+//   const token = req.headers['authorization'];
+//   if (!token) return res.status(401).json({ success: false, message: 'Access denied. No token provided.' });
 
-  try {
-    const verified = jwt.verify(token.split(' ')[1], process.env.JWT_SECRET || 'your_jwt_secret');
-    req.user = verified;
-    next();
-  } catch (error) {
-    res.status(403).json({ success: false, message: 'Invalid token.' });
-  }
-};
+//   try {
+//     const verified = jwt.verify(token.split(' ')[1], process.env.JWT_SECRET || 'your_jwt_secret');
+//     req.user = verified;
+//     next();
+//   } catch (error) {
+//     res.status(403).json({ success: false, message: 'Invalid token.' });
+//   }
+// };
 
 // Obtener información del usuario autenticado
 // const getAuthenticatedUser = async (req, res) => {
@@ -91,13 +92,14 @@ const authenticateToken = (req, res, next) => {
 // get all the favorite recipes's IDs
 export async function getAuthenticatedUser(req, res) {
   try {
-      const username = await db('users').select('username');
+       // Obtener el nombre de usuario de la base de datos, por ejemplo
+       const username = await db('login_register').select('username').where({ id: req.user.id }); // Usar el 'id' del usuario extraído del token
       res.status(200).json(username);
   } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Failed to retrieve favorite recipe IDs" });
+      res.status(500).json({ error: "Failed to retrieve user's username" });
   }
 }
 
 
-module.exports = { registerUser, loginUser, authenticateToken, getAuthenticatedUser };
+//module.exports = { registerUser, loginUser, authenticateToken, getAuthenticatedUser };
