@@ -21,7 +21,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json()); // Para manejar JSON en el cuerpo de las solicitudes
-app.use('/', userRoutes);
+app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
