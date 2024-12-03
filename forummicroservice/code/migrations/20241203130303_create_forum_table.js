@@ -7,7 +7,9 @@ export function up(knex) {
         table.increments('id').primary();
         table.string('title').notNullable();
         table.text('content').notNullable();
-        table.integer('user_id').notNullable();
+        table.integer('user_id').notNullable()
+            .references('id').inTable('users')
+            .onDelete('CASCADE');
         table.timestamp('created_at').defaultTo(knex.fn.now());
     });
 };

@@ -45,23 +45,23 @@ export async function getFavoriteRecipeIds(req, res) {
 // check if a recipe has already exist in database
 export async function checkFavorite(req, res) {
     const { recipe_id } = req.params;
-  
-    try {
-      const favoriteRecipeIds = await db('favorites').select('recipe_id');
-      const recipeIds = favoriteRecipeIds.map(item => item.recipe_id);
-  
-      if (recipeIds.includes(Number(recipe_id))) {
-        return res.json({ isFavorite: true });
-      } else {
-        return res.json({ isFavorite: false });
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Failed to check favorite status" });
-    }
-  }
 
-  // remove a favorite recipe from the database
+    try {
+        const favoriteRecipeIds = await db('favorites').select('recipe_id');
+        const recipeIds = favoriteRecipeIds.map(item => item.recipe_id);
+
+        if (recipeIds.includes(Number(recipe_id))) {
+            return res.json({ isFavorite: true });
+        } else {
+            return res.json({ isFavorite: false });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to check favorite status" });
+    }
+}
+
+// remove a favorite recipe from the database
 export async function removeFavorite(req, res) {
     const { recipe_id } = req.params;
 
