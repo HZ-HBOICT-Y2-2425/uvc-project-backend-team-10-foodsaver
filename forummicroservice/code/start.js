@@ -14,5 +14,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRouter);
 
 app.listen(port, () => {
-  console.log(`Favorite Server running on ${port}...`)
+  console.log(`Forum Server running on ${port}...`)
 })
