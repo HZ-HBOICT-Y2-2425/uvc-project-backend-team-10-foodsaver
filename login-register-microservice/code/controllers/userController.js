@@ -1,5 +1,6 @@
 const knex = require('knex')(require('../knexfile').development);
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -21,10 +22,10 @@ const registerUser = async (req, res) => {
   }
 };
 
-const jwt = require('jsonwebtoken');
-
 const loginUser = async (req, res) => {
   const { username, password } = req.body;
+
+  console.log("Login Request Received: ", { username, password });
 
   if (!username || !password) {
     return res.status(400).json({ success: false, message: 'All fields are required!' });
@@ -32,27 +33,32 @@ const loginUser = async (req, res) => {
 
   try {
     const user = await knex('users').where({ username }).first();
+    console.log("User Found: ", user);
+
     if (user && (await bcrypt.compare(password, user.password))) {
-      // Generate JWT
       const token = jwt.sign(
         { id: user.id, username: user.username, email: user.email },
         process.env.JWT_SECRET || 'fZ3YzbwhqacdgNWYDY3Y33cU8yjjJyL',
         { expiresIn: '1h' }
       );
 
-      res.status(200).json({
+      console.log("JWT Generated: ", token);
+
+      return res.status(200).json({
         success: true,
         message: 'Login successful!',
         token,
+        username: user.username,
       });
     } else {
-      res.status(401).json({ success: false, message: 'Invalid username or password' });
+      console.log("Invalid credentials");
+      return res.status(401).json({ success: false, message: 'Invalid username or password' });
     }
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error logging in', error });
+    console.error("Error logging in: ", error);
+    return res.status(500).json({ success: false, message: 'Error logging in', error });
   }
 };
-
 
 const authenticateToken = (req, res, next) => {
   const token = req.headers['authorization'];
