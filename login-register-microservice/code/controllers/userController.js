@@ -49,6 +49,7 @@ const loginUser = async (req, res) => {
         message: 'Login successful!',
         token,
         username: user.username,
+        id: user.id,
       });
     } else {
       console.log("Invalid credentials");
