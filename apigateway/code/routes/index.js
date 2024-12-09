@@ -8,6 +8,25 @@ const microserviceProxy = createProxyMiddleware({
   changeOrigin: true
 });
 
+const favoritemicroserviceProxy = createProxyMiddleware({
+  target: 'http://favoritemicroservice:3012',
+  changeOrigin: true
+});
+
+const forummicroserviceProxy = createProxyMiddleware({
+  target: 'http://forummicroservice:3015',
+  changeOrigin: true
+});
+
+const loginregistermicroserviceProxy = createProxyMiddleware({
+  target: 'http://loginregistermicroservice:4000/',
+  changeOrigin: true
+});
+
+router.use('/loginregistermicroservice', loginregistermicroserviceProxy);
+
 router.use('/microservice', microserviceProxy);
+router.use('/favoritemicroservice', favoritemicroserviceProxy);
+router.use('/forummicroservice', forummicroserviceProxy);
 
 export default router;
