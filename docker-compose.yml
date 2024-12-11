@@ -49,6 +49,18 @@ services:
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
+  pantry-microservice:
+    container_name: pantry-microservice
+    build: ./pantry-microservice
+    volumes:
+      - ./pantry-microservice/code:/usr/src/app
+    networks:
+      - msexample
+    ports:
+      - "3016:3016"
+    working_dir: /usr/src/app
+    command: bash -c "npm install && npm run dev"
+
   gateway:
     container_name: apigateway
     build: ./apigateway
