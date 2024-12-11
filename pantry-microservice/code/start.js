@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.TOKEN_SERVER_PORT || 3016; 
 // support json encoded and url-encoded bodies, mainly used for post and update
 
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:5173'}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRouter);
