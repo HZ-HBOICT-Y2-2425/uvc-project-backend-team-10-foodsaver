@@ -53,17 +53,18 @@ export async function getAllItems(req, res) {
 
 // Update a pantry item for a user
 export async function updateItem(req, res) {
-    const { name, quantity, expiration_date } = req.body;
-    const {user_id} = req.query;
+    const { quantity, expiration_date } = req.body;
+    const { user_id } = req.query;
+    const { name } = req.params;  // Retrieve name from request parameters
 
     try {
-        const updatedRows = await db('pantry').where({ name, user_id }).update({ name, quantity, expiration_date });
+        const updatedRows = await db('pantry').where({ name, user_id }).update({ quantity, expiration_date });
 
         if (updatedRows === 0) {
             return res.status(404).json({ error: "Item not found or no permission to update" });
         }
 
-        const updatedItem = await db('pantry').where({ id }).first();
+        const updatedItem = await db('pantry').where({ name, user_id }).first();
         res.status(200).json({ message: "Item updated successfully", item: updatedItem });
     } catch (error) {
         console.error(error);
