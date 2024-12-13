@@ -6,11 +6,9 @@ import indexRouter from './routes/index.js';
 import cors from "cors";
 
 const app = express();
-const port = process.env.TOKEN_SERVER_PORT || 4010; 
+const port = process.env.TOKEN_SERVER_PORT;
 // support json encoded and url-encoded bodies, mainly used for post and update
-
-app.use(cors()); // Allow all origins
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRouter);
