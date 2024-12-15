@@ -23,10 +23,16 @@ const loginregistermicroserviceProxy = createProxyMiddleware({
   changeOrigin: true
 });
 
+const tipsmicroserviceProxy = createProxyMiddleware({
+  target: 'http://tipsmicroservice:3016/',
+  changeOrigin: true
+});
+
 router.use('/loginregistermicroservice', loginregistermicroserviceProxy);
 
 router.use('/microservice', microserviceProxy);
 router.use('/favoritemicroservice', favoritemicroserviceProxy);
 router.use('/forummicroservice', forummicroserviceProxy);
+router.use('/tipsmicroservice', tipsmicroserviceProxy);
 
 export default router;

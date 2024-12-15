@@ -7,6 +7,7 @@ const indexRouter = require("./routes/index.js");
 
 const express = require('express');
 const app = express();
+app.use(cors());
 
 
 app.use(express.json()); // Middleware para procesar JSON
