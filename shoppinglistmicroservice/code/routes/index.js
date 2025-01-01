@@ -9,7 +9,7 @@ const app = express();
 const corsOptions = {
   origin: '*', // Allow requests from all origins (use specific domains if needed)
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 // Apply the CORS middleware
@@ -24,16 +24,15 @@ app.get('/shopping-lists', getShoppingLists);
 
 // Proxy route for TheMealDB API
 app.get('/proxy/mealdb', async (req, res) => {
-  const { ingredient } = req.query;
   try {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${req.query.ingredient}`);
     const data = await response.json();
     res.json(data);
   } catch (error) {
-    console.error('Error fetching data from TheMealDB:', error);
-    res.status(500).json({ error: 'Failed to fetch data from TheMealDB.' });
+    res.status(500).json({ error: 'Failed to fetch data from MealDB' });
   }
 });
+
 
 // Start the server
 app.listen(4052, () => {
