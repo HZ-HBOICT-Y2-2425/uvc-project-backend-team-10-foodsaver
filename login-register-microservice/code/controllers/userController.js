@@ -155,4 +155,21 @@ const changePassword = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword };
+const incrementRecipeCount = async (req, res) => {
+  const { id: userId } = req.user;
+
+  try {
+    await knex('users').where({ id: userId }).increment('recipe_count', 1);
+    const updatedUser = await knex('users').where({ id: userId }).first();
+
+    res.status(200).json({
+      success: true,
+      message: 'Recipe count incremented successfully.',
+      recipe_count: updatedUser.recipe_count,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error incrementing recipe count.', error });
+  }
+};
+
+module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount };
