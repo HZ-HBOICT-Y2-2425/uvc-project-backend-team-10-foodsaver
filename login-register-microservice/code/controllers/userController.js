@@ -74,4 +74,27 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-module.exports = { registerUser, loginUser, authenticateToken };
+// Fetch top 50 users by saved money
+const getTop50Users = async (req, res) => {
+  try {
+      const users = await knex('users')
+          .select('username', 'email') // Asegúrate de que la columna 'savedMoney' existe
+          .orderBy('email', 'desc')
+          .limit(50);
+
+      res.status(200).json({
+          success: true,
+          data: users,
+      });
+  } catch (error) {
+      console.error('Error fetching leaderboard data:', error);
+      res.status(500).json({
+          success: false,
+          message: 'Failed to fetch leaderboard data.',
+          error: error.message,
+      });
+  }
+};
+
+
+module.exports = { registerUser, loginUser, authenticateToken, getTop50Users };
