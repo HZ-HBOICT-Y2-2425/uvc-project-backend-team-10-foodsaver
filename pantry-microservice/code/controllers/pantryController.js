@@ -38,12 +38,11 @@ export async function getAllItems(req, res) {
         // Query the database for pantry items that match the logged-in user's ID
         const pantryItems = await db('pantry').where({ user_id });
 
-        if (pantryItems.length === 0) {
-            return res.status(404).json({ error: "No pantry items found" });
-        }
+        // Query the database for all pantry categories
+        const categories = await db('pantry_categories').select('*');
 
         // Return the filtered pantry items for the logged-in user
-        res.status(200).json(pantryItems);
+        res.status(200).json({ pantryItems, categories });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
