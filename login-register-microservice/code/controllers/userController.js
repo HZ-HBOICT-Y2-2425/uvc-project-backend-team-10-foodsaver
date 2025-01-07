@@ -79,8 +79,6 @@ const authenticateToken = (req, res, next) => {
   }
 };
 
-
-
 const updateUsername = async (req, res) => {
   const { id: userId } = req.user;
   const { newUsername } = req.body;
@@ -173,3 +171,23 @@ const incrementRecipeCount = async (req, res) => {
 };
 
 module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount };
+const updateUserSavings = async (req, res) => {
+  const { id } = req.params;
+  const { money_saved, co2_saved } = req.body;
+
+  if (money_saved === undefined || co2_saved === undefined) {
+    return res.status(400).json({ success: false, message: 'Both money_saved and co2_saved fields are required!' });
+  }
+
+  try {
+    await knex('users')
+      .where({ id })
+      .update({ money_saved, co2_saved });
+
+    res.status(200).json({ success: true, message: 'Savings updated successfully!' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error updating savings', error });
+  }
+};
+
+module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount, updateUserSavings };

@@ -10,10 +10,15 @@ export function up(knex) {
         table.integer('user_id').notNullable()
             .references('id').inTable('users')
             .onDelete('CASCADE');
+        table.string('photo_url'); // To store uploaded photo URLs
         table.timestamp('created_at').defaultTo(knex.fn.now());
     });
-};
+}
 
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
 export function down(knex) {
     return knex.schema.dropTableIfExists('forum');
-};
+}
