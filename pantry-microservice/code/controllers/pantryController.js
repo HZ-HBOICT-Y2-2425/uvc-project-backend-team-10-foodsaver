@@ -40,7 +40,7 @@ export async function getAllItems(req, res) {
 
         // Query the database for all pantry categories
         const categories = await db('pantry_categories').select('*');
-d
+
         // Return the filtered pantry items for the logged-in user
         res.status(200).json({ pantryItems, categories });
     } catch (error) {
