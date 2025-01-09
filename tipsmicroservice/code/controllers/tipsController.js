@@ -4,8 +4,10 @@ const cors = require('cors');
 
 // Controlador actualizado
 async function getTipsByCategory(req, res) {
-  const { category } = req.query; // Cambiado de req.params a req.query
-
+  const { category } = req.params; // Cambiado de req.params a req.query
+  console.log(category);
+  console.log(category);
+  console.log(category);
   try {
     // Buscar los tips por la categoría seleccionada
     const tips = await db('tips')
