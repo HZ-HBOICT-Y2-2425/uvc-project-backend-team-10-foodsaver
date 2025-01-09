@@ -170,6 +170,53 @@ const incrementRecipeCount = async (req, res) => {
   }
 };
 
+// Fetch top 50 users by saved money
+const getTop50UsersMoneySaved = async (req, res) => {
+  try {
+      const users = await knex('users')
+          .select('username', 'money_saved')
+          .orderBy('money_saved', 'desc')
+          .limit(50);
+
+      res.status(200).json({
+          success: true,
+          data: users,
+      });
+  } catch (error) {
+      console.error('Error fetching leaderboard data:', error);
+      res.status(500).json({
+          success: false,
+          message: 'Failed to fetch leaderboard data.',
+          error: error.message,
+      });
+  }
+};
+
+// Fetch top 50 users by saved co2
+const getTop50UsersCO2Reduced = async (req, res) => {
+  try {
+      const users = await knex('users')
+          .select('username', 'co2_saved') 
+          .orderBy('co2_saved', 'desc')
+          .limit(50);
+
+      res.status(200).json({
+          success: true,
+          data: users,
+      });
+  } catch (error) {
+      console.error('Error fetching leaderboard data:', error);
+      res.status(500).json({
+          success: false,
+          message: 'Failed to fetch leaderboard data.',
+          error: error.message,
+      });
+  }
+};
+
+
+
+
 module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount };
 const updateUserSavings = async (req, res) => {
   const { id } = req.params;
@@ -190,4 +237,4 @@ const updateUserSavings = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount, updateUserSavings };
+module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount, updateUserSavings, getTop50UsersCO2Reduced, getTop50UsersMoneySaved };
