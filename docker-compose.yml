@@ -33,7 +33,7 @@ services:
     networks:
       - msexample
     ports:
-      - "3015:3015"
+      - "3020:3015"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
@@ -45,7 +45,7 @@ services:
     networks:
       - msexample
     ports:
-      - "4000:4000"
+      - "4001:4001"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
 
@@ -72,6 +72,18 @@ services:
       - "4010:4010"
     working_dir: /usr/src/app
     command: bash -c "npm install && npm run dev"
+
+  shoppinglistmicroservice:
+    container_name: shoppinglistmicroservice
+    build: ./shoppinglistmicroservice
+    volumes:
+      - ./shoppinglistmicroservice/code:/usr/src/app
+    networks:
+      - msexample
+    ports:
+      - "4053:4052"
+    working_dir: /usr/src/app
+    command: bash -c "npm install && npm rebuild sqlite3 && npm run dev"
 
   gateway:
     container_name: apigateway

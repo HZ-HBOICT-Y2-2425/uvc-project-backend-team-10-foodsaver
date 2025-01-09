@@ -5,11 +5,11 @@ const db = knex(development);
 // Utility function to handle token extraction and user_id retrieval
 export async function addItem(req, res) {
     const { user_id } = req.query;
-    const { name, quantity, expiration_date } = req.body;
+    const { name, quantity, expiration_date, measurement, category } = req.body;
 
     // Validate request body fields
-    if (!name || !quantity || !user_id) {
-        return res.status(400).json({ error: "Name, quantity, expiration date, and user ID are required" });
+    if (!name || !quantity || !user_id || !category || !measurement) {
+        return res.status(400).json({ error: "Name, quantity, category and measurement unit are required" });
     }
 
     try {
@@ -18,6 +18,8 @@ export async function addItem(req, res) {
             name,
             quantity,
             expiration_date,
+            measurement,
+            category,
             user_id
         });
 
@@ -38,12 +40,11 @@ export async function getAllItems(req, res) {
         // Query the database for pantry items that match the logged-in user's ID
         const pantryItems = await db('pantry').where({ user_id });
 
-        if (pantryItems.length === 0) {
-            return res.status(404).json({ error: "No pantry items found" });
-        }
+        // Query the database for all pantry categories
+        const categories = await db('pantry_categories').select('*');
 
         // Return the filtered pantry items for the logged-in user
-        res.status(200).json(pantryItems);
+        res.status(200).json({ pantryItems, categories });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
@@ -53,18 +54,18 @@ export async function getAllItems(req, res) {
 
 // Update a pantry item for a user
 export async function updateItem(req, res) {
-    const { quantity, expiration_date } = req.body;
+    const { quantity, expiration_date, measurement } = req.body;
     const { user_id } = req.query;
     const { name } = req.params;  // Retrieve name from request parameters
 
     try {
-        const updatedRows = await db('pantry').where({ name, user_id }).update({ quantity, expiration_date });
+        const updatedRows = await db('pantry').where({ name, user_id }).update({ quantity, expiration_date, measurement });
 
         if (updatedRows === 0) {
             return res.status(404).json({ error: "Item not found or no permission to update" });
         }
 
-        const updatedItem = await db('pantry').where({ name, user_id }).first();
+        const updatedItem = await db('pantry').where({ name, user_id, measurement }).first();
         res.status(200).json({ message: "Item updated successfully", item: updatedItem });
     } catch (error) {
         console.error(error);

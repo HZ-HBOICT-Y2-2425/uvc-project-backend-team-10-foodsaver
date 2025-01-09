@@ -63,15 +63,131 @@ const loginUser = async (req, res) => {
 
 const authenticateToken = (req, res, next) => {
   const token = req.headers['authorization'];
-  if (!token) return res.status(401).json({ success: false, message: 'Access denied. No token provided.' });
+  if (!token) {
+    console.log("No token provided");
+    return res.status(401).json({ success: false, message: 'Access denied. No token provided.' });
+  }
 
   try {
-    const verified = jwt.verify(token.split(' ')[1], process.env.JWT_SECRET || 'your_jwt_secret');
+    const verified = jwt.verify(token.split(' ')[1], process.env.JWT_SECRET || 'fZ3YzbwhqacdgNWYDY3Y33cU8yjjJyL');
+    console.log("Token verified:", verified);
     req.user = verified;
     next();
   } catch (error) {
+    console.error("Token verification failed:", error);
     res.status(403).json({ success: false, message: 'Invalid token.' });
   }
 };
 
-module.exports = { registerUser, loginUser, authenticateToken };
+const updateUsername = async (req, res) => {
+  const { id: userId } = req.user;
+  const { newUsername } = req.body;
+
+  console.log("Received userId from token:", userId);
+  console.log("Received newUsername:", newUsername);
+
+  if (!newUsername) {
+    console.error("New username is missing");
+    return res.status(400).json({ success: false, message: 'New username is required.' });
+  }
+
+  try {
+    const existingUser = await knex('users').where({ username: newUsername }).first();
+    console.log("Existing user with newUsername:", existingUser);
+
+    if (existingUser) {
+      console.error("Username already taken:", newUsername);
+      return res.status(409).json({ success: false, message: 'Username already taken.' });
+    }
+
+    const updatedRows = await knex('users').where({ id: userId }).update({ username: newUsername });
+    console.log("Number of rows updated:", updatedRows);
+
+    if (updatedRows === 0) {
+      console.error("Failed to update username, no rows affected");
+      return res.status(400).json({ success: false, message: 'Failed to update username.' });
+    }
+
+    const updatedUser = await knex('users').where({ id: userId }).first();
+    console.log("Updated user information:", updatedUser);
+
+    res.status(200).json({ 
+      success: true, 
+      message: 'Username updated successfully.', 
+      user: updatedUser
+    });
+  } catch (error) {
+    console.error("Error updating username:", error);
+    res.status(500).json({ success: false, message: 'Error updating username', error });
+  }
+};
+
+const changePassword = async (req, res) => {
+  const { id: userId } = req.user;
+  const { oldPassword, newPassword } = req.body;
+
+  console.log("Change password request received for userId:", userId);
+
+  if (!oldPassword || !newPassword) {
+    return res.status(400).json({ success: false, message: 'Old password and new password are required.' });
+  }
+
+  try {
+    const user = await knex('users').where({ id: userId }).first();
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found.' });
+    }
+
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: 'Incorrect old password.' });
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    await knex('users').where({ id: userId }).update({ password: hashedNewPassword });
+
+    res.status(200).json({ success: true, message: 'Password updated successfully.' });
+  } catch (error) {
+    console.error("Error changing password:", error);
+    res.status(500).json({ success: false, message: 'Error changing password', error });
+  }
+};
+
+const incrementRecipeCount = async (req, res) => {
+  const { id: userId } = req.user;
+
+  try {
+    await knex('users').where({ id: userId }).increment('recipe_count', 1);
+    const updatedUser = await knex('users').where({ id: userId }).first();
+
+    res.status(200).json({
+      success: true,
+      message: 'Recipe count incremented successfully.',
+      recipe_count: updatedUser.recipe_count,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error incrementing recipe count.', error });
+  }
+};
+
+module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount };
+const updateUserSavings = async (req, res) => {
+  const { id } = req.params;
+  const { money_saved, co2_saved } = req.body;
+
+  if (money_saved === undefined || co2_saved === undefined) {
+    return res.status(400).json({ success: false, message: 'Both money_saved and co2_saved fields are required!' });
+  }
+
+  try {
+    await knex('users')
+      .where({ id })
+      .update({ money_saved, co2_saved });
+
+    res.status(200).json({ success: true, message: 'Savings updated successfully!' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error updating savings', error });
+  }
+};
+
+module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount, updateUserSavings };
