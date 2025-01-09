@@ -78,7 +78,7 @@ const authenticateToken = (req, res, next) => {
 const getTop50UsersMoneySaved = async (req, res) => {
   try {
       const users = await knex('users')
-          .select('username', 'money_saved') // Asegúrate de que la columna 'savedMoney' existe
+          .select('username', 'money_saved')
           .orderBy('money_saved', 'desc')
           .limit(50);
 
@@ -96,11 +96,11 @@ const getTop50UsersMoneySaved = async (req, res) => {
   }
 };
 
-// Fetch top 50 users by saved money
+// Fetch top 50 users by saved co2
 const getTop50UsersCO2Reduced = async (req, res) => {
   try {
       const users = await knex('users')
-          .select('username', 'co2_saved') // Asegúrate de que la columna 'savedMoney' existe
+          .select('username', 'co2_saved') 
           .orderBy('co2_saved', 'desc')
           .limit(50);
 
