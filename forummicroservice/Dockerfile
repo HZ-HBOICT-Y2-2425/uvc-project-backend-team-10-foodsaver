@@ -1,2 +1,4 @@
-FROM node:22.11.0
-RUN mkdir -p /usr/src/app
+FROM node:18
+
+# Set the working directory
+WORKDIR /usr/src/app
