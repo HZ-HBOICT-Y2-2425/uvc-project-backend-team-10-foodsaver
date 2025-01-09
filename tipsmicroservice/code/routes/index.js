@@ -8,7 +8,7 @@ const cors = require('cors');
 const router = express.Router();
 
 //routes
-router.get('/tips/', getTipsByCategory);
+router.get('/tips/:category', getTipsByCategory);
 router.get('/tips/makeuse', getTipsByUse);
 
 // Exportación compatible con CommonJS
