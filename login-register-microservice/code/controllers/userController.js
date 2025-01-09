@@ -75,11 +75,33 @@ const authenticateToken = (req, res, next) => {
 };
 
 // Fetch top 50 users by saved money
-const getTop50Users = async (req, res) => {
+const getTop50UsersMoneySaved = async (req, res) => {
   try {
       const users = await knex('users')
-          .select('username', 'email') // Asegúrate de que la columna 'savedMoney' existe
-          .orderBy('email', 'desc')
+          .select('username', 'money_saved') // Asegúrate de que la columna 'savedMoney' existe
+          .orderBy('money_saved', 'desc')
+          .limit(50);
+
+      res.status(200).json({
+          success: true,
+          data: users,
+      });
+  } catch (error) {
+      console.error('Error fetching leaderboard data:', error);
+      res.status(500).json({
+          success: false,
+          message: 'Failed to fetch leaderboard data.',
+          error: error.message,
+      });
+  }
+};
+
+// Fetch top 50 users by saved money
+const getTop50UsersCO2Reduced = async (req, res) => {
+  try {
+      const users = await knex('users')
+          .select('username', 'co2_saved') // Asegúrate de que la columna 'savedMoney' existe
+          .orderBy('co2_saved', 'desc')
           .limit(50);
 
       res.status(200).json({
@@ -97,4 +119,5 @@ const getTop50Users = async (req, res) => {
 };
 
 
-module.exports = { registerUser, loginUser, authenticateToken, getTop50Users };
+
+module.exports = { registerUser, loginUser, authenticateToken, getTop50UsersMoneySaved, getTop50UsersCO2Reduced };
