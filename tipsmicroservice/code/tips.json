@@ -1,0 +1,410 @@
+[
+  {
+    "id": 1,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Use pumpkin seeds as a snack or salad topping",
+    "description": null
+  },
+  {
+    "id": 2,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Turn beet greens into a nutritious stir-fry",
+    "description": null
+  },
+  {
+    "id": 3,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Potato peels can be fried or baked into chips",
+    "description": null
+  },
+  {
+    "id": 4,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Boil corn husks to make aromatic tea or broth",
+    "description": null
+  },
+  {
+    "id": 5,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Crush ripe banana peels for natural fertilizer",
+    "description": null
+  },
+  {
+    "id": 6,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Apple cores can be steeped in water to make tea",
+    "description": null
+  },
+  {
+    "id": 7,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Use the outer leaves of cabbage in soups or ferment them into sauerkraut",
+    "description": null
+  },
+  {
+    "id": 8,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Dry celery or parsley leaves and grind them into seasoning powder",
+    "description": null
+  },
+  {
+    "id": 9,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Use pea or bean pods to make purées or broths",
+    "description": null
+  },
+  {
+    "id": 10,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Save vegetable cooking water as a base for soups",
+    "description": null
+  },
+  {
+    "id": 11,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Grate hard cheese ends to use as a topping or seasoning",
+    "description": null
+  },
+  {
+    "id": 12,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Freeze leftover tomatoes to use in sauces or broths",
+    "description": null
+  },
+  {
+    "id": 13,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Use vegetable peels like carrots or onions to make homemade broth",
+    "description": null
+  },
+  {
+    "id": 14,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Blend carrot greens to make pesto",
+    "description": null
+  },
+  {
+    "id": 15,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Citrus fruit peels can be grated for zest or caramelized",
+    "description": null
+  },
+  {
+    "id": 16,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Use broccoli stems in soups or stews after peeling them",
+    "description": null
+  },
+  {
+    "id": 17,
+    "category": "Make the Most of Every Part of Your Ingredients",
+    "title": "Save chicken or meat bones to prepare stocks and sauces",
+    "description": null
+  },
+  {
+    "id": 18,
+    "category": "Reuse Food Leftovers",
+    "title": "Make croquettes with leftover fish or meat",
+    "description": null
+  },
+  {
+    "id": 19,
+    "category": "Reuse Food Leftovers",
+    "title": "Turn leftover mashed potatoes into gnocchi dough",
+    "description": null
+  },
+  {
+    "id": 20,
+    "category": "Reuse Food Leftovers",
+    "title": "Use leftover chicken and rice to make wraps or burritos",
+    "description": null
+  },
+  {
+    "id": 21,
+    "category": "Reuse Food Leftovers",
+    "title": "Turn leftover pasta into a cold pasta salad",
+    "description": null
+  },
+  {
+    "id": 22,
+    "category": "Reuse Food Leftovers",
+    "title": "Add leftover cheese to sauces or casseroles",
+    "description": null
+  },
+  {
+    "id": 23,
+    "category": "Reuse Food Leftovers",
+    "title": "Use overripe fruit to make homemade jam",
+    "description": null
+  },
+  {
+    "id": 24,
+    "category": "Reuse Food Leftovers",
+    "title": "Use leftover soup as a base for a thicker stew",
+    "description": null
+  },
+  {
+    "id": 25,
+    "category": "Reuse Food Leftovers",
+    "title": "Mash leftover vegetables to make veggie patties",
+    "description": null
+  },
+  {
+    "id": 26,
+    "category": "Reuse Food Leftovers",
+    "title": "Mix leftover mashed potatoes with flour to make savory pancakes",
+    "description": null
+  },
+  {
+    "id": 27,
+    "category": "Reuse Food Leftovers",
+    "title": "Make a homemade pizza with leftover meat and vegetables",
+    "description": null
+  },
+  {
+    "id": 28,
+    "category": "Reuse Food Leftovers",
+    "title": "Add leftover cold coffee to desserts or smoothies",
+    "description": null
+  },
+  {
+    "id": 29,
+    "category": "Reuse Food Leftovers",
+    "title": "Grate leftover chocolate to garnish cakes or drinks",
+    "description": null
+  },
+  {
+    "id": 30,
+    "category": "Reuse Food Leftovers",
+    "title": "Turn leftover rice into fried rice by adding vegetables and eggs",
+    "description": null
+  },
+  {
+    "id": 31,
+    "category": "Reuse Food Leftovers",
+    "title": "Make tortillas or quiches with leftover cooked vegetables",
+    "description": null
+  },
+  {
+    "id": 32,
+    "category": "Reuse Food Leftovers",
+    "title": "Use stale bread to prepare pudding, French toast, or breadcrumbs",
+    "description": null
+  },
+  {
+    "id": 33,
+    "category": "Reuse Food Leftovers",
+    "title": "Transform leftover cooked meat into tacos or empanadas",
+    "description": null
+  },
+  {
+    "id": 34,
+    "category": "Reuse Food Leftovers",
+    "title": "Freeze small portions of leftovers to add to future soups or stews",
+    "description": null
+  },
+  {
+    "id": 35,
+    "category": "Storing Food",
+    "title": "Wrap celery in aluminum foil to keep it fresh longer",
+    "description": null
+  },
+  {
+    "id": 36,
+    "category": "Storing Food",
+    "title": "Use reusable silicone bags to freeze foods",
+    "description": null
+  },
+  {
+    "id": 37,
+    "category": "Storing Food",
+    "title": "Wrap bananas in plastic wrap at the stem to slow ripening",
+    "description": null
+  },
+  {
+    "id": 38,
+    "category": "Storing Food",
+    "title": "Freeze whole tomatoes and grate them frozen for sauces",
+    "description": null
+  },
+  {
+    "id": 39,
+    "category": "Storing Food",
+    "title": "Store carrots in water in the refrigerator to prevent drying out",
+    "description": null
+  },
+  {
+    "id": 40,
+    "category": "Storing Food",
+    "title": "Wash fruits with diluted vinegar to keep them fresh longer",
+    "description": null
+  },
+  {
+    "id": 41,
+    "category": "Storing Food",
+    "title": "Cover avocados with onions to prevent oxidation",
+    "description": null
+  },
+  {
+    "id": 42,
+    "category": "Storing Food",
+    "title": "Store eggs in their original carton to protect them from temperature changes",
+    "description": null
+  },
+  {
+    "id": 43,
+    "category": "Storing Food",
+    "title": "Freeze individual food portions to thaw only what you need",
+    "description": null
+  },
+  {
+    "id": 44,
+    "category": "Storing Food",
+    "title": "Use glass jars to store dry foods and protect them from moisture",
+    "description": null
+  },
+  {
+    "id": 45,
+    "category": "Storing Food",
+    "title": "Freeze butter in cubes for quick use in recipes",
+    "description": null
+  },
+  {
+    "id": 46,
+    "category": "Storing Food",
+    "title": "Place parchment paper between slices of meat or fish before freezing",
+    "description": null
+  },
+  {
+    "id": 47,
+    "category": "Storing Food",
+    "title": "Freeze fresh herbs in ice cube trays with oil to use as cooking bases",
+    "description": null
+  },
+  {
+    "id": 48,
+    "category": "Storing Food",
+    "title": "Store ripe fruits in the freezer for smoothies or desserts",
+    "description": null
+  },
+  {
+    "id": 49,
+    "category": "Storing Food",
+    "title": "Keep bread in the freezer to prevent it from going stale",
+    "description": null
+  },
+  {
+    "id": 50,
+    "category": "Storing Food",
+    "title": "Place a piece of paper towel in salad bags to keep them fresh longer",
+    "description": null
+  },
+  {
+    "id": 51,
+    "category": "Storing Food",
+    "title": "Use airtight jars to extend the shelf life of nuts and cereals",
+    "description": null
+  },
+  {
+    "id": 52,
+    "category": "Save Money When Shopping",
+    "title": "Buy bulk items like rice, beans, or oats",
+    "description": null
+  },
+  {
+    "id": 53,
+    "category": "Save Money When Shopping",
+    "title": "Cook at home instead of buying prepared meals",
+    "description": null
+  },
+  {
+    "id": 54,
+    "category": "Save Money When Shopping",
+    "title": "Prioritize discounted or on-sale products",
+    "description": null
+  },
+  {
+    "id": 55,
+    "category": "Save Money When Shopping",
+    "title": "Buy \"ugly\" fruits and vegetables; they’re often cheaper",
+    "description": null
+  },
+  {
+    "id": 56,
+    "category": "Save Money When Shopping",
+    "title": "Visit local markets late in the day for reduced prices",
+    "description": null
+  },
+  {
+    "id": 57,
+    "category": "Save Money When Shopping",
+    "title": "Buy frozen products; they’re often cheaper and last longer",
+    "description": null
+  },
+  {
+    "id": 58,
+    "category": "Save Money When Shopping",
+    "title": "Cook large batches and freeze portions for later",
+    "description": null
+  },
+  {
+    "id": 59,
+    "category": "Save Money When Shopping",
+    "title": "Use discount apps for food close to expiration",
+    "description": null
+  },
+  {
+    "id": 60,
+    "category": "Save Money When Shopping",
+    "title": "Substitute expensive ingredients with cheaper alternatives (e.g., yogurt instead of cream)",
+    "description": null
+  },
+  {
+    "id": 61,
+    "category": "Save Money When Shopping",
+    "title": "Grow your own herbs like basil, parsley, or cilantro at home",
+    "description": null
+  },
+  {
+    "id": 62,
+    "category": "Save Money When Shopping",
+    "title": "Buy only what’s necessary based on your weekly meal plan",
+    "description": null
+  },
+  {
+    "id": 63,
+    "category": "Save Money When Shopping",
+    "title": "Take advantage of loyalty programs or discount coupons at supermarkets",
+    "description": null
+  },
+  {
+    "id": 64,
+    "category": "Save Money When Shopping",
+    "title": "Buy seasonal products; they are cheaper and fresher",
+    "description": null
+  },
+  {
+    "id": 65,
+    "category": "Save Money When Shopping",
+    "title": "Plan your meals to avoid unnecessary purchases",
+    "description": null
+  },
+  {
+    "id": 66,
+    "category": "Save Money When Shopping",
+    "title": "Compare prices by weight or volume, not just by unit",
+    "description": null
+  },
+  {
+    "id": 67,
+    "category": "Save Money When Shopping",
+    "title": "Bring your own shopping list and avoid unnecessary items",
+    "description": null
+  },
+  {
+    "id": 68,
+    "category": "Save Money When Shopping",
+    "title": "Take advantage of discounts on products close to their expiration date if you'll use them soon",
+    "description": null
+  }
+]
