@@ -10,6 +10,6 @@ app.use(bodyParser.json());
 
 app.use('/api/users', userRoutes);
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
