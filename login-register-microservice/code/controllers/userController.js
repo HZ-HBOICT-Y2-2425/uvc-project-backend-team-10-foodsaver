@@ -239,7 +239,7 @@ const getUserSavings = async (req, res) => {
   try {
     const user = await knex('users')
       .where({ id })
-      .select('money_saved', 'co2_saved')
+      .select('money_saved', 'co2_saved', 'recipeCount')
       .first();
 
     if (!user) {
