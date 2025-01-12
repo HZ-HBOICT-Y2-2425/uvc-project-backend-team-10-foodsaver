@@ -8,7 +8,7 @@ export async function addItem(req, res) {
     const { name, quantity, expiration_date, measurement, category } = req.body;
 
     // Validate request body fields
-    if (!name || !quantity || !user_id || !category || !measurement) {
+    if (!name || !quantity || !user_id || !measurement) {
         return res.status(400).json({ error: "Name, quantity, category and measurement unit are required" });
     }
 

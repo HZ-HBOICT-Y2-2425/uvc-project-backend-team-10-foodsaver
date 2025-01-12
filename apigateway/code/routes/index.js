@@ -29,9 +29,11 @@ const tipsmicroserviceProxy = createProxyMiddleware({
   changeOrigin: true
 });
 
-router.use('/loginregistermicroservice', loginregistermicroserviceProxy);
 
-
+const pantrymicroserviceProxy = createProxyMiddleware({
+  target: 'http://pantrymicroservice:4010/',
+  changeOrigin: true
+});
 
 router.use('/loginregistermicroservice', loginregistermicroserviceProxy);
 router.use('/pantrymicroservice', pantrymicroserviceProxy);

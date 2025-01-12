@@ -157,7 +157,7 @@ const incrementRecipeCount = async (req, res) => {
   const { id: userId } = req.user;
 
   try {
-    await knex('users').where({ id: userId }).increment('recipe_count', 1);
+    await knex('users').where({ id: userId }).increment('recipeCount', 1);
     const updatedUser = await knex('users').where({ id: userId }).first();
 
     res.status(200).json({
@@ -214,10 +214,6 @@ const getTop50UsersCO2Reduced = async (req, res) => {
   }
 };
 
-
-
-
-module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount };
 const updateUserSavings = async (req, res) => {
   const { id } = req.params;
   const { money_saved, co2_saved } = req.body;
@@ -237,4 +233,24 @@ const updateUserSavings = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount, updateUserSavings, getTop50UsersCO2Reduced, getTop50UsersMoneySaved };
+const getUserSavings = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await knex('users')
+      .where({ id })
+      .select('money_saved', 'co2_saved')
+      .first();
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.status(200).json({ success: true, data: user });
+  } catch (error) {
+    console.error('Error fetching user savings:', error);
+    res.status(500).json({ success: false, message: 'Error fetching user savings', error });
+  }
+};
+
+module.exports = { registerUser, loginUser, authenticateToken, updateUsername, changePassword, incrementRecipeCount, updateUserSavings, getUserSavings, getTop50UsersCO2Reduced, getTop50UsersMoneySaved };
