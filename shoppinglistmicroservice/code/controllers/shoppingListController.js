@@ -78,3 +78,26 @@ export const getShoppingLists = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch shopping lists." });
   }
 };
+
+export const removeShoppingList = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db.transaction(async (trx) => {
+      // Delete items first
+      await trx('shopping_list_items')
+        .where({ shopping_list_id: id })
+        .del();
+
+      // Delete the shopping list
+      await trx('shopping_lists')
+        .where({ id })
+        .del();
+    });
+
+    res.status(200).json({ message: "Shopping list removed successfully." });
+  } catch (error) {
+    console.error("Error removing shopping list: ", error);
+    res.status(500).json({ error: "Failed to remove shopping list." });
+  }
+};

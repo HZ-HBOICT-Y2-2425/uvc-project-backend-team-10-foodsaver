@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors'; // Import CORS middleware
-import { saveShoppingList, getShoppingLists } from '../controllers/shoppingListController.js';
+import { saveShoppingList, getShoppingLists, removeShoppingList } from '../controllers/shoppingListController.js';
 import fetch from 'node-fetch';
 
 const app = express();
@@ -21,6 +21,7 @@ app.use(express.json());
 // Shopping list routes
 app.post('/shopping-lists', saveShoppingList);
 app.get('/shopping-lists', getShoppingLists);
+app.delete('/shopping-lists/:id', removeShoppingList);
 
 // Proxy route for TheMealDB API
 app.get('/proxy/mealdb', async (req, res) => {
