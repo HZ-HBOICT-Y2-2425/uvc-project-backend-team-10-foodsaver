@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Expose the correct port (match the one in docker-compose)
-EXPOSE 3012
+EXPOSE 3015
 
 # Set the command to start the application
 CMD ["npm", "run", "dev"]
