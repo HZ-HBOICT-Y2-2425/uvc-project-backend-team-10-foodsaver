@@ -1,4 +1,43 @@
-# Resolving issues with merging branches with conflicting .db files
+# 🛠️ Foodsaver Backend – Microservices Architecture  
+
+## 📌 What is Foodsaver Backend?  
+Foodsaver Backend is the **microservices-based backend** powering the Foodsaver web platform. It supports features such as **user authentication, pantry management, shopping list creation, community forums, and food-saving tips**, all designed to help users reduce food waste and CO₂ emissions.  
+
+## 🌍 Why a Microservices Architecture?  
+Foodsaver's backend is built using **microservices** to ensure **scalability, maintainability, and flexibility**. Each microservice handles a specific responsibility, allowing independent updates and better resource management.  
+
+## 🏗️ Microservices Overview  
+The backend is structured into several microservices, each responsible for a different domain of the application:  
+
+| **Microservice**            | **Description** |
+|----------------------------|---------------|
+| **Login & Register Service** | Handles **user authentication, registration, and authorization.** |
+| **Pantry Service** | Manages **user-added ingredients, expiration tracking, and availability.** |
+| **Shopping List Service** | Allows users to **create, update, and manage shopping lists.** |
+| **Favorites Service** | Stores and manages **user-favorite recipes and saved items.** |
+| **Forum Service** | Supports **community discussions, user posts, and recipe-sharing.** |
+| **Tips Service** | Provides users with **food-saving tips and sustainability suggestions.** |
+
+## 🔧 Tech Stack  
+The backend microservices are developed using:  
+- **Programming Language:** JavaScript
+- **Database:** MySQL  
+- **API Communication:** REST APIs  
+- **Containerization & Deployment:** Docker, Render  
+
+## 🚀 Getting Started  
+
+### 📦 Clone the Repository  
+```sh
+git clone https://github.com/yourusername/foodsaver-backend.git
+cd foodsaver-backend
+npm install
+docker-compose exec (container name) npx sequelize-cli db:migrate
+docker-compose exec (container name) npx sequelize-cli db:seed:all
+docker compose up --build
+```
+
+## Resolving issues with merging branches with conflicting .db files
 
 1. Delete JUST the conflicting .db files from your local repository. File location is `your repo/microservice-causing-the-issue/code`.
 2. Push the repository with the deleted .db files to a different branch than you are trying to merge to
@@ -9,7 +48,7 @@
 >>   npx knex migrate:latest
 >>   npx knex seed:run
 
-# Resolving issues with Knex not finding sqlite3 node modules while trying to run migrations or docker compose
+## Resolving issues with Knex not finding sqlite3 node modules while trying to run migrations or docker compose
 
 1. Open a powershell terminal
 2. Navigate to the `your repo/microservice-causing-the-issue/code` in the terminal
@@ -24,7 +63,7 @@ rm -rf .\node_modules
 rm -rf .\package-lock.json
 
 
-## Do these steps only if you have issues with migrations 
+### Do these steps only if you have issues with migrations 
 4. Run command: npm install
 5. (If you need to run migrations, do it now, as this workaround will stop working when running docker compose up)
 6. Once you are done with migrations or seeders, run this command again:
@@ -37,33 +76,33 @@ Remove-Item -Force .\package-lock.json
 rm -rf .\node_modules
 rm -rf .\package-lock.json
 
-## Do these steps only if you encounter problems with docker compose
+### Do these steps only if you encounter problems with docker compose
 7. Make sure to run docker compose up WITHOUT RUNNING NPM INSTALL!!!
 8. Docker composer should be running.
 
 
-# Backend example
+## Backend example
 
 In this backend example for a project, a folder is created for each micoservice. 
 
 1. Install docker to your system
 2. Run `docker compose up` and you are good to go
 
-## Modules
+### Modules
 
 We use ES6 module system to import and export modules.
 
-## Variables.env
+### Variables.env
 
 We save credentials to other services in a `variables.env` file. This file is included in this template. However, it is common use not to include it in a public repository. There are some default key value pairs included to demonstrate its working.
 
-## Ports
+### Ports
 
 You can change the ports of your server via `variables.env`
 
 - Microservice: sample microservice running on port:3011
 - Apigateway: sample API Gateway - running on port:3010
 
-## Containers
+### Containers
 
 Check the readme files of each container to understand the setup
